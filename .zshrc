@@ -53,12 +53,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
 # See https://github.com/ohmyzsh/ohmyzsh/issues/5765
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -111,7 +111,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
  else
-   export EDITOR='mvim'
+   export EDITOR='vim'
  fi
 
 # Compilation flags
@@ -126,7 +126,6 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias python='python3'
-alias sudo='sudo '
 
 . /usr/share/autojump/autojump.sh
 
@@ -141,3 +140,15 @@ if [ -e $HOME/.aliases ]; then
     source $HOME/.aliases
 fi
 
+test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias sudo='sudo '
+alias sudo='nocorrect sudo'
+
+export VAULT_ADDR='https://vault-ha-dev.internal.telnyx.com'
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/opt/apache-maven-3.8.5/bin
+# Print Time in Different Timezones
+#$HOME/clock.sh

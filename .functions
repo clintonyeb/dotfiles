@@ -40,3 +40,27 @@ fzf-git-checkout() {
     fi
 }
 
+
+cdr_var() {
+    echo $(curl -s -X GET "http://cdrsaggregates.query.consul:8084/cdrs/blob?uuid=$1" | jq ".$2")
+}
+
+
+vault_read(){
+     vault read secret/$1 | sed 's/  */ /g' | tail -n +3 | sed 's/[[:space:]]/=/' | sed -z 's/\n/;/g'
+}
+
+function check_detail_records_search {
+  API_V2_KEY='KEY0179385C780340A2930F4B67BD4B5AE6_Y2b3y7xuKzWlp20lBSJass'
+  curl -X GET \
+    --header "Authorization: Bearer ${API_V2_KEY}" \
+    "https://api.telnyx.com/v2/detail_records?$1"
+  echo
+}
+
+function check_detail_records_search_internal {
+   curl -X GET \
+     "https://api.telnyx.com/internal/detail_records?$1"
+   echo
+ }
+
